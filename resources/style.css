@@ -47,3 +47,88 @@ td,th {
     padding: 20px 30px;
 	border-bottom: 0px;
 }
+
+@font-face{  
+	font-family:'FFF';
+	src:  local("☺"),
+		  url("FFF Tusj.ttf") format('truetype'); 
+}
+
+@font-face{  
+	font-family:'CabinSketch';
+	src:  local("☺"),
+		  url("CabinSketch-Bold.ttf") format('truetype'); 
+}
+
+@font-face{  
+	font-family:'VeteranTypewriter';
+	src:  local("☺"),
+		  url("veteran_typewriter.ttf") format('truetype'); 
+}
+
+/*Slides specific*/
+
+.segue hgroup {
+    position: absolute;
+    top: 100px;
+}
+.title-slide hgroup p {
+    font-size: 40px;
+    color: #797979;
+    line-height: 1.3;
+    margin-top: 3em;
+}
+
+slides > slide {
+	background-image: url(NotebookPaper.jpg);
+	background-size:cover;
+	background-position:center;
+}
+
+slides > slide.title-slide h1 {
+	font-family: FFF, Arial, serif;
+}
+slides > slide.title-slide p[data-config-presenter] {
+	font-family: CabinSketch, Arial, serif;
+}
+slides > slide.title-slide p {
+	font-family: CabinSketch, Arial, serif;
+}
+
+slides h1,h2,h3 {
+	font-weight:100;
+}
+slides h2 {
+    font-size: 60px;
+    line-height: 65px;
+    letter-spacing: -2px;
+    color: #515151;
+	font-family: CabinSketch, Arial, serif;
+}
+slides > slide {
+	padding-left:100px;
+	padding-top:20px;
+	font-family: VeteranTypewriter,Arial, serif;
+	font-size:30pt;
+}
+
+slides > slide ul {
+	list-style: disc;
+	margin-left:0.5em;
+}
+slides > slide ul ul {
+	list-style: circle;
+	margin-left:0.5em;
+	margin-top:0px;
+}
+slides > slide ul > li:before {
+	content: '';
+    margin-left: -1em;
+    position: absolute;
+    font-weight: 600;
+}
+/*Two tone blue*/
+table.rmdtable  {font-size:50%;background:#e8f1f6;text-align:left;border:0;border-spacing:0;}
+table.rmdtable th {display:table-header;color:white;font-size:1em;font-weight: bold; border:1.0pt solid rgb(0,0,127);padding:3.6pt 5pt;background:rgb(0,120,230) none repeat scroll 0% 50%;}
+table.rmdtable td {font-size:0.8em;padding:3pt;border-left: 1.0pt solid rgb(0,0,127);border-right: 1.0pt solid rgb(0,0,127);border-bottom: 1.0pt solid rgb(0,0,127)}
+  
