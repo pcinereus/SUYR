@@ -175,6 +175,16 @@ slides > slide pre.prettyprint {
     color: #60a0b0;
     font-style: italic;
 }
+slides > slide pre {
+	margin-bottom:0px;
+}
+
+slides > slide ol,ul {
+	margin-bottom:0px;
+}
+slides > slide ol li, ul li {
+	margin-bottom:0px;
+}
 
 slides > slide pre.lang-bash {
     -moz-border-radius-bottomright: 3px;
