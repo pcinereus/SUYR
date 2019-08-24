@@ -2765,15 +2765,25 @@ slides h2 {
 font-size: 60px;
 line-height: 65px;
 letter-spacing: -2px;
-color: #515151;
 font-family: CabinSketch, Arial, serif;
+color: #3E769A;
+}
+slides h3 {
+font-size: 40px;
+line-height: 65px;
+letter-spacing: -2px;
+font-family: CabinSketch, Arial, serif;
+color: #515151;
 }
 slides > slide {
 padding-left:100px;
 padding-top:20px;
+padding-right:5px;
 font-family: VeteranTypewriter,Arial, serif;
 font-size:30pt;
 }
+slides > slide > hgroup + article {
+margin-top: 5px; }
 slides > slide ul {
 list-style: disc;
 margin-left:0.5em;
@@ -2793,6 +2803,139 @@ font-weight: 600;
 table.rmdtable {font-size:50%;background:#e8f1f6;text-align:left;border:0;border-spacing:0;}
 table.rmdtable th {display:table-header;color:white;font-size:1em;font-weight: bold; border:1.0pt solid rgb(0,0,127);padding:3.6pt 5pt;background:rgb(0,120,230) none repeat scroll 0% 50%;}
 table.rmdtable td {font-size:0.8em;padding:3pt;border-left: 1.0pt solid rgb(0,0,127);border-right: 1.0pt solid rgb(0,0,127);border-bottom: 1.0pt solid rgb(0,0,127)}
+slides > slide strong {
+color: #e17727;
+}
+slides > slide > hgroup + article p {
+margin-bottom: 0em;
+}
+slides > slide pre.prettyprint {
+margin: 5px 15px 0px 5px;
+left: 0px;
+
+padding: 0px;
+padding-top: 2px;
+padding-left: 10px;
+border: 1px solid #d6d6d6;
+border-left: 5px solid #3E769A;
+background: #FFFFE4;
+overflow: hidden;
+font-size: 0.5em;
+width: auto;
+line-height: 1.5em;
+
+font-family: Consolas, Monaco, 'Courier New', monospace;
+}
+.prettyprint .pln {
+color: #007020;
+font-weight: bold;
+}
+.prettyprint .com {
+color: #60a0b0;
+font-style: italic;
+}
+slides > slide pre.lang-bash {
+-moz-border-radius-bottomright: 3px;
+-moz-border-radius-bottomleft: 3px;
+-moz-border-radius-topright: 3px;
+-moz-border-radius-topleft: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-left-radius: 3px;
+border-top-right-radius: 3px;
+border-top-left-radius: 3px;
+margin: 5px 15px 0px 5px;
+
+padding: 0px;
+padding-top: 2px;
+padding-left: 10px;
+border: none;
+margin: 5px 15px 0px 5px;
+
+background: #000000;
+color: white;
+overflow: hidden;
+font-size: 0.5em;
+width: auto;
+
+font-family: Consolas, Monaco, 'Courier New', monospace;
+}
+slides > slide pre.lang-bash .pln {
+color: white;
+font-weight: bold;
+}
+slides > slide pre.lang-bash .com {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash .str {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash .pun {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash .kwd {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash .typ {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash1 {
+-moz-border-radius-bottomright: 3px;
+-moz-border-radius-bottomleft: 3px;
+-moz-border-radius-topright: 3px;
+-moz-border-radius-topleft: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-left-radius: 3px;
+border-top-right-radius: 3px;
+border-top-left-radius: 3px;
+margin: 5px 15px 0px 5px;
+
+padding: 0px;
+padding-top: 2px;
+padding-left: 10px;
+border: none;
+margin: 5px 15px 0px 5px;
+
+background: #000000;
+color: white;
+overflow: hidden;
+font-size: 0.5em;
+width: auto;
+
+font-family: Consolas, Monaco, 'Courier New', monospace;
+}
+slides > slide pre.lang-bash1 .pln {
+color: white;
+font-weight: bold;
+}
+slides > slide pre.lang-bash1 .com {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash1 .str {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash1 .pun {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash1 .kwd {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash1 .typ {
+color: white;
+font-style: italic;
+}
+slides > slide pre.lang-bash1 .lit {
+color: white;
+font-style: italic;
+}
 </style>
 
 
@@ -3028,7 +3171,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Index</h1>
 <h4 class="author">Murray Logan</h4>
-<h4 class="date">23 August, 2019</h4>
+<h4 class="date">24 August, 2019</h4>
 
 </div>
 
@@ -3046,6 +3189,8 @@ div.tocify {
 <h1>Presentations</h1>
 <ul>
 <li><a href="pres1.html">Course introduction (pres1.html)</a></li>
+<li><a href="pres19.1.html">Intriduction to git/github (pres19.1.html)</a></li>
+<li><a href="pres2.4.html">Intriduction to data wrangling in R (pres2.4.html)</a></li>
 </ul>
 </div>
 
