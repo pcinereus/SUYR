@@ -1,0 +1,89 @@
+---
+title: "This is the title"
+author: "D. Author"
+date: "11 March 2019"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+# Introduction
+
+Markdown is a __markup__ language that provides very simple styling rules all in 
+plain text.  It has an emphasis on allowing the author to concentrate on content
+rather than formatting.
+
+Its simplicity makes it ideal as a base format from which to convert to other formats such
+as:
+
+- html
+- pdf (via LaTeX)
+- word
+- epub
+- etc
+
+**pandoc** is an open sources universal document converter. Rstudio comes shipped
+with pandoc.
+
+
+An **Rmarkdown** file is a markdown document in which R code is embedded.
+
+An R "chunk" is defined as:
+
+```{r}
+rnorm(100)
+```
+
+When the Rmarkdown document is **knitted**, the `knit()` routine evaluates all the R chunks
+and inserts the output (in markdown format) into the document before it is processed by __pandoc__
+to yield the final format.
+
+
+# Section 1 {#Section1}
+
+## Subsection
+
+We can refer back to [Section 1](#Section1) or even to
+an external resource like <http://www.flutterbys.com.au/stats> or [this](http://www.flutterbys.com.au/stats).
+
+- unordered list item that makes an **important point**
+   - a subitem
+- another list item, also with an *important point*
+
+***
+1. An enumerated list item
+   i) a subitem
+2. Another item 
+
+***
+
+Images can be embedded, for example:
+
+![](resources/rmarkdown-2.0-1.png)
+
+
+Equations are included between single \$ (for inline equations) and double \$\$ for blocked equations like:
+
+$Y_i = \beta_0 + \beta_1 F_i$
+
+where $y_i$ is the response.
+
+Mathematical formulae are processed using mathjax (for html and word) or LaTeX for pdf.
+
+***
+
+# Compact layout {.tabset .tabset-fade}
+
+## Tab 1
+Some content
+
+## Tab 2
+Some other content
+
+#
+
+More about markdown syntax can be found:
+
+[This is a link to the Rstudio Rmarkdown cheatsheet](resources/rmarkdown-2.0.pdf)
+

@@ -1,0 +1,52 @@
+---
+title: "Yet another example"
+author: "D Author"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+ bookdown::html_document2:
+    toc: true
+    fig_caption: true
+    toc_float: yes
+    theme: default
+    self_contained: yes
+ bookdown::word_document2:
+    toc: true
+    fig_caption: true
+ bookdown::pdf_document2:
+    toc: true
+    fig_caption: true
+    df_print: kable
+    highlight: default
+always_allow_html: no
+---
+
+# Introduction
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+#options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+```
+
+
+```{r tab1}
+cars %>% 
+  head %>% 
+  kable(caption='This is a table') %>%
+  kable_styling()
+```
+
+```{r tab2}
+cars %>% 
+  head %>% 
+  kable(caption='This is a table', booktabs=TRUE,linesep = "") %>%
+  kable_styling(latex_options = c("striped","HOLD_position"),font_size = 7) 
+```
+
+```{r fig1, fig.cap='This is the figure caption'}
+ggplot(cars, aes(y=speed, x=dist)) + geom_point()
+```
+
+We can now refer to table \@ref(tab:tab1) and figure \@ref(fig:fig1).
+
+# References

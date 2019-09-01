@@ -1,0 +1,62 @@
+---
+title: "This is another example"
+author: "D. Author"
+date: "10 March 2019"
+output:
+  html_document: 
+    code_folding: show
+    collapse: no
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+bibliography: resources/references.bib
+csl: resources/marine-pollution-bulletin.csl
+---
+
+# Load Data and packages
+```{r}
+library(tidyverse)
+```
+
+```{r createdata}
+y = rnorm(100)
+x = rnorm(100)
+dat = data.frame(y,x)
+```
+
+
+# Process Data
+
+```{r fig1, fig.cap='The figure caption.'}
+# this is a comment
+ggplot(dat, aes(x,y)) + geom_point()
+```
+
+```{r tab1, echo=FALSE}
+knitr::kable(summary(cars), caption='This is a table', booktab=TRUE)
+```
+
+
+# Introduction
+
+## Section 1
+
+This is some text
+
+$$
+y_i = \beta_0 = \beta_1 x_i
+$$
+
+where $\beta_0$ is the intercept
+
+A couple of in text citations:
+
+- According to [@Bolker-2008-127] 
+- @goossens93
+
+```{r}
+sessionInfo()
+```
+
+References
+===========
