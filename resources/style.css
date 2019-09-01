@@ -290,3 +290,14 @@ slides > slide pre.lang-bash1 .lit {
     color: white;
     font-style: italic;
 }
+
+.two-columns {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+}
+.three-columns {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+}
