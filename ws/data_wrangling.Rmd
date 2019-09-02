@@ -14,7 +14,7 @@ output:
     theme: spacelab
     toc: yes
     toc_float: yes
-    css: resources/style.css
+    css: ../resources/style.css
   pdf_document:
     df_print: default
     fig_caption: yes
@@ -38,7 +38,7 @@ mainfont: Arial
 mathfont: LiberationMono
 monofont: DejaVu Sans Mono
 classoption: a4paper
-bibliography: resources/references.bib
+bibliography: ../resources/references.bib
 ---
 
 ```{r setup, include=FALSE, warnings=FALSE, message=FALSE}
@@ -78,7 +78,7 @@ Important data manipulation functions:
 # Data files
 
 ```{r getData, results='markdown', eval=TRUE}
-load(file='data/manipulationDatasets.RData')
+load(file='../data/manipulationDatasets.RData')
 data.1 %>% head
 ```
 

@@ -60,7 +60,7 @@ an external resource like <http://www.flutterbys.com.au/stats> or [this](http://
 
 Images can be embedded, for example:
 
-![](resources/rmarkdown-2.0-1.png)
+![](../resources/rmarkdown-2.0-1.png)
 
 
 Equations are included between single \$ (for inline equations) and double \$\$ for blocked equations like:
@@ -85,5 +85,5 @@ Some other content
 
 More about markdown syntax can be found:
 
-[This is a link to the Rstudio Rmarkdown cheatsheet](resources/rmarkdown-2.0.pdf)
+[This is a link to the Rstudio Rmarkdown cheatsheet](../resources/rmarkdown-2.0.pdf)
 

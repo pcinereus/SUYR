@@ -14,7 +14,7 @@ output:
     theme: spacelab
     toc: yes
     toc_float: yes
-    css: resources/style.css
+    css: ../resources/style.css
   pdf_document:
     df_print: default
     fig_caption: yes
@@ -38,7 +38,7 @@ mainfont: Arial
 mathfont: LiberationMono
 monofont: DejaVu Sans Mono
 classoption: a4paper
-bibliography: resources/references.bib
+bibliography: ../resources/references.bib
 ---
 
 ```{r setup, include=FALSE, warnings=FALSE, message=FALSE}
@@ -66,7 +66,7 @@ library(tidyverse) #for data wrangling
 
 Here is a modified example from @Peake-1993-269.  @Peake-1993-269 investigated the relationship between the number of individuals of invertebrates living in amongst clumps of mussels on a rocky intertidal shore and the area of those mussel clumps.
 
-![](resources/mussels.jpg)
+![](../resources/mussels.jpg)
 
 Format of peakquinn.csv data files
 
@@ -91,7 +91,7 @@ The aim of the analysis is to investigate the relationship between mussel clump 
 # Read in the data
 
 ```{r readData, results='markdown', eval=TRUE}
-peake = read_csv('data/peakquinn.csv', trim_ws=TRUE)
+peake = read_csv('../data/peakquinn.csv', trim_ws=TRUE)
 glimpse(peake)
 ```
 

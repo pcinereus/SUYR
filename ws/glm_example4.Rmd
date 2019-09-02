@@ -14,7 +14,7 @@ output:
     theme: spacelab
     toc: yes
     toc_float: yes
-    css: resources/style.css
+    css: ../resources/style.css
   pdf_document:
     df_print: default
     fig_caption: yes
@@ -38,7 +38,7 @@ mainfont: Arial
 mathfont: LiberationMono
 monofont: DejaVu Sans Mono
 classoption: a4paper
-bibliography: resources/references.bib
+bibliography: ../resources/references.bib
 ---
 
 ```{r setup, include=FALSE, warnings=FALSE, message=FALSE}
@@ -69,7 +69,7 @@ variables (patch area, distance to nearest patch, distance to nearest
 larger patch, grazing intensity, altitude and years since the patch had
 been isolated).
 
-![Regent honeyeater](resources/regent_honeyeater_small.jpg){width="165" height="240"}
+![Regent honeyeater](../resources/regent_honeyeater_small.jpg){width="165" height="240"}
 
 Format of loyn.csv data file
 
@@ -92,7 +92,7 @@ The aim of the analysis is to investigate the effects of a range of predictors o
 # Read in the data
 
 ```{r readData, results='markdown', eval=TRUE}
-loyn = read_csv('data/loyn.csv', trim_ws=TRUE)
+loyn = read_csv('../data/loyn.csv', trim_ws=TRUE)
 glimpse(loyn)
 ```
 

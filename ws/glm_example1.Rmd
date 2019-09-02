@@ -14,7 +14,7 @@ output:
     theme: spacelab
     toc: yes
     toc_float: yes
-    css: resources/style.css
+    css: ../resources/style.css
   pdf_document:
     df_print: default
     fig_caption: yes
@@ -38,7 +38,7 @@ mainfont: Arial
 mathfont: LiberationMono
 monofont: DejaVu Sans Mono
 classoption: a4paper
-bibliography: resources/references.bib
+bibliography: ../resources/references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -64,7 +64,7 @@ library(tidyverse) #for data wrangling
 
 Here is an example from @Fowler-1998-1998. An agriculturalist was interested in the effects of fertilizer load on the yield of grass.  Grass seed was sown uniformly over an area and different quantities of commercial fertilizer were applied to each of ten 1 m<sup>2</sup> randomly located plots.  Two months later the grass from each plot was harvested, dried and weighed.  The data are in the file **fertilizer.csv** in the **data** folder.
 
-![](resources/turf.jpg){width=70%}
+![](../resources/turf.jpg){width=70%}
 
 | FERTILIZER   | YIELD   |
 | ------------ | ------- |
@@ -86,7 +86,7 @@ The aim of the analysis is to investigate the relationship between fertilizer co
 # Read in the data
 
 ```{r readData, results='markdown', eval=TRUE}
-fert = read_csv('data/fertilizer.csv', trim_ws=TRUE)
+fert = read_csv('../data/fertilizer.csv', trim_ws=TRUE)
 glimpse(fert)
 head(fert)
 str(fert)

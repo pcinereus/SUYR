@@ -14,7 +14,7 @@ output:
     theme: spacelab
     toc: yes
     toc_float: yes
-    css: resources/style.css
+    css: ../resources/style.css
   pdf_document:
     df_print: default
     fig_caption: yes
@@ -38,7 +38,7 @@ mainfont: Arial
 mathfont: LiberationMono
 monofont: DejaVu Sans Mono
 classoption: a4paper
-bibliography: resources/references.bib
+bibliography: ../resources/references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -64,7 +64,7 @@ library(tidyverse) #for data wrangling
 
 @Polis-1998-490 were intested in modelling the presence/absence of lizards (<i>Uta sp.</i>) against the perimeter to area ratio of 19 islands in the Gulf of California.
 
-![Uta lizard](resources/uta.jpg){width="200" height="137"}
+![Uta lizard](../resources/uta.jpg){width="200" height="137"}
 
 Format of polis.csv data file
 
@@ -90,7 +90,7 @@ The aim of the analysis is to investigate the relationship between island parime
 # Read in the data
 
 ```{r readData, results='markdown', eval=TRUE}
-polis = read_csv('data/polis.csv', trim_ws=TRUE)
+polis = read_csv('../data/polis.csv', trim_ws=TRUE)
 glimpse(polis)
 head(polis)
 str(polis)

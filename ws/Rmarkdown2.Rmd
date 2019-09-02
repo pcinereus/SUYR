@@ -9,8 +9,8 @@ output:
     theme: spacelab
     toc: yes
     toc_float: yes
-bibliography: resources/references.bib
-csl: resources/marine-pollution-bulletin.csl
+bibliography: ../resources/references.bib
+csl: ../resources/marine-pollution-bulletin.csl
 ---
 
 # Load Data and packages
