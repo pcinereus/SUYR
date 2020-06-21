@@ -1,0 +1,14 @@
+---
+title: Example markdown
+author: D. Author
+date: 16-06-2020
+---
+
+# This is the title
+
+```{r}
+x <- rnorm(10)
+summary(x)
+```
+
+
