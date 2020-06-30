@@ -1,0 +1,16 @@
+---
+title: This is the title
+author: D. Author
+date: 14-02-2013
+---
+
+(ref:tab-cap) Biochemical oxygen demand
+
+```{r BODData, tab.cap='(ref:tab-cap)'}
+library(flextable)
+BOD %>% 
+	flextable %>%
+	width(width=1) %>%
+	fontsize(size=8, part='all') %>%
+	bold(part='header')
+```

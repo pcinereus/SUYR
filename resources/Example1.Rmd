@@ -11,4 +11,3 @@ x <- rnorm(10)
 summary(x)
 ```
 
-

@@ -1,0 +1,13 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex    
+geometry: paperwidth=20cm,paperheight=10cm,hmargin=1cm,vmargin=1cm
+documentclass: article
+mainfont: Arial
+include-before: \pagestyle{empty}
+...
+
+```{r BODData}
+knitr::kable(BOD, caption="Biochemical oxygen demand", booktabs=TRUE)
+```

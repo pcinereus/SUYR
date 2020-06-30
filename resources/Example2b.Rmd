@@ -1,0 +1,9 @@
+---
+title: This is the title
+author: D. Author
+date: 14-02-2013
+---
+
+```{r BODData}
+knitr::kable(BOD, caption="Biochemical oxygen demand", format="markdown")
+```
