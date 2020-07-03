@@ -6,7 +6,7 @@ date: 16-06-2020
 
 # This is the title
 
-```{r}
+```{r summary}
 x <- rnorm(10)
 summary(x)
 ```
