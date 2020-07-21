@@ -1319,7 +1319,7 @@ window.initializeCodeFolding = function(show) {
   var currentIndex = 1;
 
   // select all R code blocks
-  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia');
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
   rCodeBlocks.each(function() {
 
     // create a collapsable div to wrap the code in
@@ -2697,6 +2697,7 @@ h6 {
 <style type="text/css">body {
 //background-color: antiquewhite;
 background-color: #62ABFE;
+counter-reset: section;
 }
 #TOC {
 margin: 25px 0px 20px 0px;
@@ -2710,6 +2711,22 @@ box-shadow: 0px 3px 20px #333;
 }
 h1, h2 {
 color: #3E769A;
+}
+h1 {
+counter-reset: subsection;
+}
+h2 {
+counter-reset: subsubsection;
+}
+
+div.section:not(.unnumbered) > h1:not(.title):before { counter-increment: section 1;
+content: "Section " counter(section, decimal) ": ";
+}
+div.section:not(.unnumbered) > h2::before { counter-increment: subsection;
+content: counter(section) ":" counter(subsection) " ";
+}
+div.section:not(.unnumbered) > h3::before { counter-increment: subsubsection;
+content: counter(section) ":" counter(subsubsection) " ";
 }
 img.pdf {
 background: #FFFFFF;
@@ -2729,6 +2746,18 @@ color: #333333;
 background-color: #f5f5f5;
 border: 1px solid #cccccc;
 border-radius: 4px;
+}
+table.table-condensed {background:#e8f1f6;text-align:left;border:0;border-spacing:0;}
+table.table-condensed th {display:table-header;color:white;font-size:1em;font-weight: bold; border:1.0pt solid rgb(0,0,127);padding:3.6pt 5pt;background:rgb(0,120,230) none repeat scroll 0% 50%;}
+table.table-condensed td {padding:3pt;border-left: 1.0pt solid rgb(0,0,127);border-right: 1.0pt solid rgb(0,0,127);border-bottom: 1.0pt solid rgb(0,0,127)}
+.column {
+display:inline-grid;
+}
+.center{
+text-align:center;
+}
+.column pre {
+text-align:left;
 }
 </style>
 
@@ -2925,7 +2954,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Singularity on the HPC</h1>
 <h4 class="author">Murray Logan</h4>
-<h4 class="date">21 June, 2020</h4>
+<h4 class="date">13 July, 2020</h4>
 
 </div>
 
@@ -3019,9 +3048,11 @@ pre.hpc code::before {
     margin-left: 10px;
 }
 </style>
-<div id="overview" class="section level1">
-<h1>Overview</h1>
-<p>The intention of this tutorial is to illustrate how to build a singularity container within AIMS’ HPC environment. Specifically, we will:</p>
+<div id="overview-singularity" class="section level1">
+<h1>Overview (Singularity)</h1>
+<p>The intention of this tutorial is to illustrate how to build a singularity container for use on the AIMS’ HPC environment. Specifically, we will:</p>
+<ol style="list-style-type: decimal">
+<li>build a restricted singularity container on the HPC
 <ol style="list-style-type: decimal">
 <li>build a sandbox (editable) singularity container from an <code>rstan</code> <code>docker</code> container</li>
 <li>modify the sandbox container by adding an additional R package</li>
@@ -3029,6 +3060,8 @@ pre.hpc code::before {
 <li>test (run the image) the image and get read/write access to a nominated folder outside the container</li>
 <li>create an alias to run the singularity image</li>
 <li>schedule a job using the image</li>
+</ol></li>
+<li>build a more customised container on a local machine and transfer it to the HPC</li>
 </ol>
 <p>Obviously to be useful this tutorial will have to include and introduction to both docker and singularity. This should include diagrams.</p>
 <ul>
@@ -3036,14 +3069,16 @@ pre.hpc code::before {
 <li><p>Describe singularity (make a similar figure to above)</p></li>
 </ul>
 </div>
-<div id="login-to-hpc" class="section level1">
-<h1>Login to HPC</h1>
+<div id="build-a-restricted-image-on-the-hpc" class="section level1">
+<h1>Build a restricted image on the HPC</h1>
+<div id="login-to-hpc" class="section level2">
+<h2>Login to HPC</h2>
 <p>Before we can perform any work on the HPC, we must first be logged in. Singularity is only installed on compute node 1 (as it is the only one with a recent enough kernel). So we must first login to <code>hpc-compute1</code>.</p>
 <p>I have setup my RSA keys, so I will use these for convenience and so that the underlying code that generates this page does not have to except password input from me in order to run.</p>
 <pre class="bash"><code>ssh -i ~/.ssh/hpc_id_rsa mlogan@hpc-compute1</code></pre>
 </div>
-<div id="build-a-singularity-sandbox" class="section level1">
-<h1>Build a singularity sandbox</h1>
+<div id="build-a-singularity-sandbox" class="section level2">
+<h2>Build a singularity sandbox</h2>
 <p>Have some text that indicates that singularity images can be built from:</p>
 <ol style="list-style-type: decimal">
 <li>a definition file (only root can do this)</li>
@@ -3065,8 +3100,8 @@ pre.hpc code::before {
 <pre class="hpc"><code>singularity exec rstan.simg R</code></pre>
 <p>However, we will not have access to any folders outside of the container and thus will not be able to add any packages, read in any of our data or save any outputs.</p>
 </div>
-<div id="customise-the-singularity-image" class="section level1">
-<h1>Customise the singularity image</h1>
+<div id="customise-the-singularity-image" class="section level2">
+<h2>Customise the singularity image</h2>
 <p>In order to customise the image, we create a sandbox (writable) singularity instance. Rather than an image, this is an entire folder structure (<code>rstan3.5.1</code> in this case).</p>
 <ol style="list-style-type: decimal">
 <li><p>Create the sandbox</p>
@@ -3083,8 +3118,8 @@ pre.hpc code::before {
 <pre class="hpc"><code>singularity exec -B /export/home/l-p/mlogan:/home/mlogan rstan3.5.1.simg R</code></pre></li>
 </ol>
 </div>
-<div id="running-an-r-script" class="section level1">
-<h1>Running an R script</h1>
+<div id="running-an-r-script" class="section level2">
+<h2>Running an R script</h2>
 <p>Lets now create a small R script with the contents and save it to the <code>rstan-singularity</code> folder (the current working directory)</p>
 <pre><code>setwd(&#39;home/mlogan/tmp&#39;)
 a &lt;- 1
@@ -3099,8 +3134,8 @@ cat analysis.R
 <p>Now to run the script:</p>
 <pre class="hpc"><code>singularity exec -B /export/home/l-p/mlogan:/home/mlogan rstan3.5.1.simg R &lt; analysis.R</code></pre>
 </div>
-<div id="alias-the-singularity-image" class="section level1">
-<h1>Alias the singularity image</h1>
+<div id="alias-the-singularity-image" class="section level2">
+<h2>Alias the singularity image</h2>
 <p>The above is a lot of typing. Aliases allow us to create shortcuts for commands.</p>
 <pre class="hpc"><code>alias rstan=&#39;singularity exec -B /export/home/l-p/mlogan:/home/mlogan rstan3.5.1.simg R&#39;</code></pre>
 <p>This alias will operate for the duration of the session. In order to make the alias permanent, we can add it to our <code>~/.bashrc</code> script.</p>
@@ -3108,15 +3143,48 @@ cat analysis.R
 <p>And then reload the session (if we want it to have immediate affect) with:</p>
 <pre class="hpc"><code>source ~/.bashrc</code></pre>
 </div>
-<div id="queuing-a-job" class="section level1">
-<h1>Queuing a job</h1>
+<div id="queuing-a-job" class="section level2">
+<h2>Queuing a job</h2>
 <p>These instructions still to come…</p>
+</div>
+</div>
+<div id="build-a-more-complex-image-and-transfer-it-to-the-hpc" class="section level1">
+<h1>Build a more complex image and transfer it to the HPC</h1>
+<div id="obtaining-the-base-image-from-docker" class="section level2">
+<h2>Obtaining the base image from docker</h2>
+<ol style="list-style-type: decimal">
+<li><p>Making a folder to house this singularity container</p>
+<pre class="bash"><code>mkdir -r ~/tmp/rstan-singularity</code></pre></li>
+<li><p>Change into this folder</p>
+<pre class="bash"><code>cd ~/tmp/rstan-singularity</code></pre></li>
+<li><p>Pull an rstan docker image</p>
+<pre class="bash"><code>singularity pull docker://jrnold/rstan</code></pre>
+<p>This will create an image called <code>rstan_latest.sif</code> within the current working directory. At this point, we could run the singularity image as is by issuing the following:</p></li>
+</ol>
+<pre class="bash"><code>singularity exec rstan_latest.sif R</code></pre>
+<p>In this way, we can run a completely quarantined version of R. However, that is not the intention of this tutorial. Rather, we are going to make changes to this image, rebuild it and then deploy it on the AIMS HPC.</p>
+</div>
+<div id="modifying-the-image" class="section level2">
+<h2>Modifying the image</h2>
+<p>We will make the following changes:</p>
+<ol style="list-style-type: decimal">
+<li>add additional software to the base <code>ubuntu</code> operating system</li>
+<li>add additional R packages</li>
+</ol>
+<div id="add-additional-software" class="section level3">
+<h3>Add additional software</h3>
+<pre class="bash"><code>sudo singularity build --sandbox rstan_latest.sif</code></pre>
+<p>sudo singularity shell –writable rstan sudo apt-get update sudo apt-get install emacs-nox export TERM=xterm-256color emacs -nw sudo R install.packages(‘tidyverse’)</p>
+<p>sudo singularity build rstan3.5.1.simg rstan singularity shell rstan3.5.1 scp this to the HPC</p>
 <script type="text/javascript">
 $(document).ready(function () {
 $('pre.bash').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>murray@arch:~</span></div>");
 $('pre.hpc').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>mlogan@hpc-compute1:~</span></div>");
+$('pre.singularity').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>singularity&gt;</span></div>");
 });
 </script>
+</div>
+</div>
 </div>
 
 
